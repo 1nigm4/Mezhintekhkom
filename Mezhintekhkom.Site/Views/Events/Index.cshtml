@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Мероприятия";
+}
+<div class="content-container">
+    @await Html.PartialAsync("NavigationPartial")
+    <h3>Все мероприятия</h3>
+    <div class="events">
+        <div class="event-3">
+            <img src="~/images/25.png">
+            <div class="content">
+                <p>День открытых дверей</p>
+                Приглашаем всех желающих на бесплатную экскурсию
+                в мир востребованных профессий и полезных навыков
+            </div>
+            <a class="btn-black">Записаться</a>
+        </div>
+        <div class="event-1">
+            <p>Встреча</p>
+            <div class="title">
+                <img src="~/images/course.png">
+                <p>Заголовок мероприятия</p>
+            </div>
+            <p>Краткий анонс мероприятия в нескольких предложениях. Текст, который будет заинтересовывать пользователя</p>
+            <label>16 ноября</label>
+        </div>
+        <div class="event-1" style="background-color: #FFE38E;">
+            <p>Встреча</p>
+            <div class="title">
+                <img src="~/images/course.png">
+                <p>Заголовок мероприятия</p>
+            </div>
+            <p>Краткий анонс мероприятия в нескольких предложениях. Текст, который будет заинтересовывать пользователя</p>
+            <label>16 ноября</label>
+        </div>
+        <div class="event-img">
+            <img src="~/images/event.png">
+            <div>
+                <p>Заголовок мероприятия</p>
+                <label>Краткий анонс мероприятия в нескольких предложениях. Текст, который будет заинтересовывать пользователя</label>
+            </div>
+        </div>
+        <div class="event-2">
+            <img class="img" src="~/images/Owl.png">
+            <div class="info">
+                <p>Вебинар</p>
+                <h6>Заголовок мероприятия</h6>
+                <p>Краткий анонс мероприятия в нескольких предложениях. Текст, который будет заинтересовывать пользователя</p>
+                <label>16 ноября</label>
+            </div>
+        </div>
+        <div class="event-1" style="background-color: #FFEEF6;">
+            <p>Встреча</p>
+            <div class="title">
+                <img src="~/images/course.png">
+                <p>Заголовок мероприятия</p>
+            </div>
+            <p>Краткий анонс мероприятия в нескольких предложениях. Текст, который будет заинтересовывать пользователя</p>
+            <label>16 ноября</label>
+        </div>
+        <div class="event-3"></div>
+        <div class="event-1"></div>
+        <div class="event-2"></div>
+    </div>
+</div>
+@await Html.PartialAsync("FeedbackPartial")

@@ -1,0 +1,58 @@
+﻿@page
+@{
+    ViewBag.Title = "Личный кабинет";
+    bool isRegErrors = (bool)(ViewData["IsRegErrors"] ?? false);
+}
+@model AuthModel
+<div class="content-container">
+    @await Html.PartialAsync("NavigationPartial")
+    <div id="auth-form">
+        <div id="tabs">
+            <input type="radio" name="tab" id="auth-tab" checked>
+            <label for="auth-tab">Вход</label>
+            <input type="radio" name="tab" id="reg-tab">
+            <label for="reg-tab">Регистрация</label>
+            <form id="auth" method="post">
+                @if (!isRegErrors)
+                {
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                }
+                <input class="form-input" asp-for="LoginInput.Email" type="text" placeholder="E-mail адрес" autocomplete="username" aria-required="true">
+                <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
+                <input class="form-input" asp-for="LoginInput.Password" type="password" placeholder="Пароль" autocomplete="current-password" aria-required="true">
+                <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+                <div class="checkbox">
+                    <label asp-for="LoginInput.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="LoginInput.RememberMe" />
+                        @Html.DisplayNameFor(m => m.LoginInput.RememberMe)
+                    </label>
+                </div>
+                <input class="btn-orange" asp-route-returnUrl="@Model.ReturnUrl" asp-page-handler="Login" type="submit" value="Войти">
+            </form>
+            <form id="reg" method="post">
+                @if (isRegErrors)
+                {
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                }
+                <input class="form-input" asp-for="RegisterInput.Email" autocomplete="username" aria-required="true" placeholder="E-mail адрес">
+                <span asp-validation-for="RegisterInput.Email" class="text-danger"></span>
+                <input class="form-input" type="password" asp-for="RegisterInput.Password" autocomplete="new-password" aria-required="true" placeholder="Пароль">
+                <span asp-validation-for="RegisterInput.Password" class="text-danger"></span>
+                <input class="form-input" type="password" asp-for="RegisterInput.ConfirmPassword" autocomplete="new-password" aria-required="true" placeholder="Подтвердите пароль">
+                <span asp-validation-for="RegisterInput.ConfirmPassword" class="text-danger"></span>
+                <input class="btn-orange" asp-route-returnUrl="@Model.ReturnUrl" asp-page-handler="Register" type="submit" value="Зарегистрироваться">
+            </form>
+        </div>
+        Войти с помощью соцсети
+        <form id="auth-external" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            @foreach (var provider in Model.ExternalLogins)
+            {
+                <button type="submit" name="provider" value="@provider.Name"><img class="social-ico" src="~/images/@(provider.DisplayName).png"></button>
+            }
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

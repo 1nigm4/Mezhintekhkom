@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>@ViewBag.Title</title>
+    @await Html.PartialAsync("MetaTagsPartial")
+    @await Html.PartialAsync("LinkTagsPartial")
+</head>
+<body>
+    @await Html.PartialAsync("HeaderPartial")
+    
+    <div class="content">
+        @RenderBody();
+    </div>
+
+    @await Html.PartialAsync("FooterPartial")
+
+    @await Html.PartialAsync("ScriptsPartial")
+    @RenderSection("Scripts", false)
+</body>
+</html>

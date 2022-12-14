@@ -39,3 +39,7 @@
     </div>
 </div>
 @await Html.PartialAsync("FeedbackPartial")
+@section Scripts {
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=1606b5d3-bb3f-4f4d-82e5-02a252347081&lang=ru-RU" type="text/javascript"></script>
+    <script src="~/js/maps.js" asp-append-version="true"></script>
+}

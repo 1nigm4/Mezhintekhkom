@@ -93,42 +93,54 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             }
             else
             {
-                var user = await CreateUserAsync(info);
-
-                var createResult = await _userManager.CreateAsync(user);
-                if (createResult.Succeeded)
+                string email = info.Principal.FindFirstValue(ClaimTypes.Email) ?? string.Empty;
+                var existUser = await _userManager.FindByEmailAsync(email);
+                if (existUser != null)
                 {
-                    createResult = await _userManager.AddLoginAsync(user, info);
+                    return RedirectToPage("RegisterConfirmation", new { email = email, returnUrl = returnUrl });
+                }
+                else
+                {
+                    var user = await CreateUserAsync(info);
+
+                    var createResult = await _userManager.CreateAsync(user);
                     if (createResult.Succeeded)
                     {
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
-
-                        var userId = await _userManager.GetUserIdAsync(user);
-
-                        if (user.Passport.Avatar != null)
+                        createResult = await _userManager.AddLoginAsync(user, info);
+                        if (createResult.Succeeded)
                         {
-                            string avatarUrl = info.Principal.FindFirstValue("image");
-                            if (info.LoginProvider == "Yandex")
-                                avatarUrl = "https://avatars.yandex.net/get-yapic/" + $"{avatarUrl}/100x100";
-                            using (WebClient wc = new WebClient())
+                            _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+
+                            var userId = await _userManager.GetUserIdAsync(user);
+
+                            string imageUrl = info.Principal.FindFirstValue("image");
+                            if (imageUrl != null)
                             {
-                                string path = Path.Combine(_environment.WebRootPath, user.Passport.Avatar);
-                                wc.DownloadFile(avatarUrl, path);
+                                if (info.LoginProvider == "Yandex")
+                                    imageUrl = "https://avatars.yandex.net/get-yapic/" + $"{imageUrl}/100x100";
+                                using (WebClient wc = new WebClient())
+                                {
+                                    string avatarUrl = $"images/avatars/{user.Id}.jpg";
+                                    user.Passport.Avatar = "~/" + avatarUrl;
+                                    string path = Path.Combine(_environment.WebRootPath, avatarUrl);
+                                    wc.DownloadFile(imageUrl, path);
+                                }
                             }
+
+                            await _emailStore.SetEmailConfirmedAsync(user, true, CancellationToken.None);
+                            await _userStore.UpdateAsync(user, CancellationToken.None);
+
+                            await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
+                            return LocalRedirect(returnUrl);
                         }
-                        
-                        await _emailStore.SetEmailConfirmedAsync(user, true, CancellationToken.None);
-
-                        await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
-                        return LocalRedirect(returnUrl);
                     }
-                }
 
-                if (createResult.Errors.Any(c => c.Code == "DuplicateUserName"))
-                    ErrorMessage = "Пользователь с таким E-mail уже зарегистрирован";
-                else
-                    ErrorMessage = "Ошибка авторизации";
-                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
+                    if (createResult.Errors.Any(c => c.Code == "DuplicateUserName"))
+                        ErrorMessage = "Пользователь с таким E-mail уже зарегистрирован";
+                    else
+                        ErrorMessage = "Ошибка авторизации";
+                    return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
+                }
             }
         }
 
@@ -154,7 +166,6 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
                 "male" or "2" => "Мужской",
                 _ => null
             };
-            string avatarUrl = claims.FindFirstValue("image");
 
             Passport passport = new Passport()
             {
@@ -163,8 +174,7 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
                 Patronymic = patronymic,
                 BirthDate = birthDate,
                 PhoneNumber = phoneNumber,
-                Gender = gender,
-                Avatar = avatarUrl != null ? $"images/avatars/{user.Id}.jpg" : null
+                Gender = gender
             };
 
             user.Passport = passport;

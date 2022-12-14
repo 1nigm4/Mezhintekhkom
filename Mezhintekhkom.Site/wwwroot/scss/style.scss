@@ -245,8 +245,7 @@ a {
     .content-container {
         display: flex;
         flex-direction: column;
-        margin: 0 auto;
-        width: 1025px;
+        margin: 0 150px;
 
         > nav {
             --bs-breadcrumb-divider: '>';
@@ -558,27 +557,28 @@ a.ui-button:active,
 #course-preview {
     display: flex;
     flex-direction: column;
-    height: 550px;
     background-image: url("../images/course-preview.jpg");
-    background-size: 100% 100%;
+    background-size: 100% auto;
     background-repeat: no-repeat;
+    overflow: hidden;
 
     .content {
         display: flex;
         flex-direction: column;
         height: 100%;
-        background-color: rgb($blue, 0.8);
+        background-color: rgb($green, 0.8);
         color: white;
 
         .header {
             display: flex;
             flex-direction: column;
-            padding: 70px 100px;
+            padding: 30px 100px;
             padding-bottom: 20px;
 
             .title {
                 font-size: 34px;
                 font-weight: 700;
+                width: 1210px;
             }
 
             strong {
@@ -586,7 +586,7 @@ a.ui-button:active,
                 font-size: 34px;
                 font-weight: 600;
                 text-shadow: black 0px 0px 1px;
-                color: #057151;
+                color: $blue;
 
                 s {
                     color: firebrick;
@@ -608,11 +608,11 @@ a.ui-button:active,
                 color: white;
                 border: 0;
                 padding: 10px 30px;
-                background-color: $green;
+                background-color: $blue;
             }
 
             button:hover {
-                background-color: rgba($green, 0.9);
+                background-color: rgba($blue, 0.9);
             }
 
             .discount {
@@ -625,15 +625,15 @@ a.ui-button:active,
 
         > .info {
             display: flex;
-            background: $blue;
+            background: $green;
             height: 100%;
+            padding: 20px;
 
             .columns {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 margin: auto;
-                padding: 20px;
 
                 .column {
                     display: flex;
@@ -663,6 +663,198 @@ a.ui-button:active,
                 }
             }
         }
+    }
+}
+
+/*Course page*/
+#document {
+    h1 {
+        font-size: 36px;
+        text-align: center;
+        letter-spacing: -2px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    p {
+        font-size: 17px;
+        text-align: center;
+    }
+
+    #gallery {
+        height: 700px;
+        margin-bottom: 20px;
+    }
+
+    .carousel-nav {
+        display: flex;
+        flex-direction: row;
+        margin: 0 40px;
+        border: 1px solid $green;
+        border-radius: 4px;
+        overflow: hidden;
+
+        button {
+            height: 50px;
+            width: 100%;
+            padding: 0;
+            border: 1px solid transparent;
+            border-top-width: 0;
+        }
+
+        button:is(:first-child) {
+            border-right-width: 1px;
+            border-right-color: $green;
+        }
+
+        button:focus {
+            background-color: $green;
+        }
+    }
+}
+
+#how-study {
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+
+    h1 {
+        font-size: 36px;
+        text-align: center;
+        letter-spacing: -2px;
+        margin: 60px 0;
+    }
+
+    .columns {
+        display: flex;
+        flex-direction: row;
+        margin: 0 80px;
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+
+            .action {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 20px;
+
+                > span {
+                    border: 1px solid $green;
+                    border-radius: 50px;
+                    width: 45px;
+                    height: 45px;
+                    text-align: center;
+                    font-size: 30px;
+                    color: $green;
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 20px;
+
+                    .title {
+                        display: flex;
+                        flex-direction: row;
+                        p {
+                            margin: 0;
+                            font-size: 22px;
+                        }
+
+                        span {
+                            margin: auto 0;
+                            margin-left: 20px;
+                            background-color: $green;
+                            padding: 1px 8px;
+                            border-radius: 8px;
+                            color: white;
+                            justify-content: center;
+                        }
+                    }
+
+                    > p {
+                        width: 400px;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .action:is(:last-child) {
+                margin-bottom: 0;
+            }
+        }
+
+        .img {
+            width: 700px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+#course-program {
+    position: relative;
+    margin: 30px 0;
+    margin-top: 0;
+
+    h1 {
+        font-size: 36px;
+        letter-spacing: -2px;
+        margin: 40px 0;
+    }
+
+    button {
+        position: absolute;
+        top: 45px;
+        right: 0;
+    }
+
+    td {
+        padding-bottom: 2em;
+    }
+
+    .header {
+        width: auto;
+        white-space: nowrap;
+        padding-right: 20px;
+        font-size: 20px;
+        font-weight: 700;
+        vertical-align: top;
+    }
+
+    .desc {
+        font-size: 15px;
+    }
+}
+
+#study-plan {
+    margin-bottom: 60px;
+    h1 {
+        font-size: 36px;
+        letter-spacing: -2px;
+        margin: 40px 0;
+        margin-bottom: 20px;
+    }
+
+    .hours {
+        border-bottom: 1px solid black;
+        text-decoration: underline $green;
+        text-decoration-thickness: 4px;
+        text-underline-offset: 10px;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    td {
+        padding-bottom: 10px;
+    }
+
+    .accordion-item {
+        width: 450px;
+        margin-right: 20px;
     }
 }
 

@@ -116,21 +116,8 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
                                 wc.DownloadFile(avatarUrl, path);
                             }
                         }
-
-                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                        {
-                            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                            var callbackUrl = Url.Page(
-                                "/Account/ConfirmEmail",
-                                pageHandler: null,
-                                values: new { area = "Identity", userId = userId, code = code },
-                                protocol: Request.Scheme);
-
-                            await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
-                                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                            return RedirectToPage("./RegisterConfirmation", new { Email = user.Email });
-                        }
+                        
+                        await _emailStore.SetEmailConfirmedAsync(user, true, CancellationToken.None);
 
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
                         return LocalRedirect(returnUrl);

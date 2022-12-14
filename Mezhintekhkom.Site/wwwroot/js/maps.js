@@ -15,10 +15,4 @@ function init () {
 
     var myPlacemark = new ymaps.Placemark([55.648214, 37.540856]);
     myMap.geoObjects.add(myPlacemark);
-
-    document.getElementById('destroyButton').onclick = function () {
-        // Для уничтожения используется метод destroy.
-        myMap.destroy();
-    };
-
 }

@@ -13,9 +13,15 @@
             <input type="radio" name="tab" id="reg-tab">
             <label for="reg-tab">Регистрация</label>
             <form id="auth" method="post">
-                @if (!isRegErrors)
+                @if (!isRegErrors && !ModelState.IsValid)
                 {
                     <div asp-validation-summary="All" class="text-danger"></div>
+                }
+                else if (Model.Caption != null)
+                {
+                    <ul>
+                        <li class="text-success">@Model.Caption</li>
+                    </ul>
                 }
                 <input class="form-input" asp-for="LoginInput.Email" type="text" placeholder="E-mail адрес" autocomplete="username" aria-required="true">
                 <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
@@ -30,7 +36,7 @@
                 <input class="btn-orange" asp-route-returnUrl="@Model.ReturnUrl" asp-page-handler="Login" type="submit" value="Войти">
             </form>
             <form id="reg" method="post">
-                @if (isRegErrors)
+                @if (isRegErrors && !ModelState.IsValid)
                 {
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 }

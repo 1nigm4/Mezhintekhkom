@@ -23,6 +23,8 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
         public RegisterViewModel RegisterInput { get; set; }
 
         [TempData]
+        public string Caption { get; set; }
+        [TempData]
         public string ErrorMessage { get; set; }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
         public string ReturnUrl { get; set; }
@@ -49,7 +51,7 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             _emailSender = emailSender;
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string caption = null, string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -58,6 +60,8 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
 
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            Caption = caption;
             ReturnUrl = returnUrl ?? Url.Content("~/");
         }
 
@@ -82,6 +86,16 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = LoginInput.RememberMe });
                 }
+                if (result.IsNotAllowed)
+                {
+                    User user = await _userManager.FindByEmailAsync(LoginInput.Email);
+                    if (user != null)
+                    {
+                        var isValidPass = await _userManager.CheckPasswordAsync(user, LoginInput.Password);
+                        if (isValidPass)
+                            return RedirectToPage("RegisterConfirmation", new { email = LoginInput.Email, returnUrl = returnUrl });
+                    }
+                }
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
@@ -89,6 +103,8 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    foreach (var field in ModelState.Where(v => !v.Key.Contains("LoginInput")))
+                        ModelState.Remove(field.Key);
                     ModelState.AddModelError(string.Empty, "Неверный логин или пароль");
                     return Page();
                 }
@@ -118,18 +134,6 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(RegisterInput.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

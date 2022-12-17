@@ -20,7 +20,7 @@
                 else if (Model.Caption != null)
                 {
                     <ul>
-                        <li class="text-success">@Model.Caption</li>
+                        <li class="text-@Model.State">@Model.Caption</li>
                     </ul>
                 }
                 <input class="form-input" asp-for="LoginInput.Email" type="text" placeholder="E-mail адрес" autocomplete="username" aria-required="true">

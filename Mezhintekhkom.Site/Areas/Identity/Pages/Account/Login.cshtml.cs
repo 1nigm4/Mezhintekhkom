@@ -7,10 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 
 namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
 {
@@ -18,12 +15,13 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
     {
         [BindProperty]
         public LoginViewModel LoginInput { get; set; }
-
         [BindProperty]
         public RegisterViewModel RegisterInput { get; set; }
-
         [TempData]
         public string Caption { get; set; }
+        [TempData]
+        public string State { get; set; }
+
         [TempData]
         public string ErrorMessage { get; set; }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
@@ -46,23 +44,26 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _userManager = userManager;
             _userStore = userStore;
-            _emailStore = GetEmailStore();
+            _emailStore = (IUserEmailStore<User>)userStore;
             _logger = logger;
             _emailSender = emailSender;
         }
 
-        public async Task OnGetAsync(string caption = null, string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string caption = null, string state = null, string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            if (User.Identity.IsAuthenticated)
+                return RedirectToPage("./Manage/Index");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             Caption = caption;
+            State = state;
             ReturnUrl = returnUrl ?? Url.Content("~/");
+            return Page();
         }
 
         public async Task<IActionResult> OnPostLoginAsync(string returnUrl = null)
@@ -124,7 +125,7 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             bool isValid = Validator.TryValidateObject(RegisterInput, context, validationResults, true);
             if (isValid)
             {
-                var user = CreateUser();
+                var user = new User();
                 user.Passport = new Passport();
 
                 await _userStore.SetUserNameAsync(user, RegisterInput.Email, CancellationToken.None);
@@ -153,29 +154,6 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             }
 
             return Page();
-        }
-
-        private User CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<User>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
-                    $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-            }
-        }
-
-        private IUserEmailStore<User> GetEmailStore()
-        {
-            if (!_userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
-            }
-            return (IUserEmailStore<User>)_userStore;
         }
     }
 }

@@ -6,11 +6,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -27,7 +25,6 @@ builder.Services.AddDefaultIdentity<User>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-MessageServiceConfiguration smsConfig = new MessageServiceConfiguration();
 builder.Services.AddTransient<IEmailSender, MessageService>();
 builder.Services.AddTransient<ISmsSender, MessageService>();
 builder.Services.Configure<MessageServiceConfiguration>(builder.Configuration.GetSection("Services"));
@@ -70,7 +67,6 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -78,7 +74,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

@@ -1,17 +1,13 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+﻿#nullable disable
 
-using System;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Mezhintekhkom.Site.Data.Entities;
+using Mezhintekhkom.Site.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Mezhintekhkom.Site.Services;
+using System.Text;
 
 namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
 {
@@ -34,16 +30,15 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetAsync(string email, string returnUrl = null)
         {
-            if (email == null)
-            {
-                return RedirectToPage("/Index");
-            }
-            ReturnUrl = returnUrl ?? Url.Content("~/");
-
+            ReturnUrl = returnUrl ??= Url.Page("./Manage/Index");
+            email ??= string.Empty;
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return NotFound($"Unable to load user with email '{email}'.");
+                return RedirectToPage("Login", new {
+                    Caption = "Пользователь с указанным Email адресом не зарегистрирован",
+                    State = "danger",
+                    ReturnUrl = returnUrl });
             }
 
             Email = email;
@@ -60,7 +55,10 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             string message = _emailSender.GetTemplateBody(MessageType.EmailConfirmation, EmailConfirmationUrl);
             await _emailSender.SendEmailAsync(email, subject, message);
 
-            return Page();
+            return RedirectToPage("Login", new {
+                Caption = $"Подтверждение отправлено по адресу {Email}",
+                State = "success",
+                ReturnUrl = returnUrl });
         }
     }
 }

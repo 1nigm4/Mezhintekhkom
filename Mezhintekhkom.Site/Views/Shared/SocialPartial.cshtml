@@ -1,0 +1,21 @@
+﻿<div id="social-webs">
+    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <img src="~/images/Vkontakte.png"/>
+        <img src="~/images/telegram.png"/>
+        <img src="~/images/youtube.png"/>
+    </a>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Мы в социальных сетях</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="vk_groups"></div>
+            <script async src="https://telegram.org/js/telegram-widget.js?21" data-telegram-post="info_mezhintekhkom/1" data-width="100%" data-userpic="true"></script>
+            <div class="g-ytsubscribe" data-channelid="UCgRylkG_Lleh0Yv45OrWlQg" data-count="default"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+@*<script src="https://apis.google.com/js/platform.js"></script>*@
+<script src="~/js/vk.js" asp-append-version="true"></script>

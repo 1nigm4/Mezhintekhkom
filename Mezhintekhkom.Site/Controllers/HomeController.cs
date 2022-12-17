@@ -19,6 +19,11 @@ namespace Mezhintekhkom.Site.Controllers
             return View();
 		}
 
+		public IActionResult Information()
+		{
+			return View();
+		}
+
 		public IActionResult Contacts()
 		{
 			return View();

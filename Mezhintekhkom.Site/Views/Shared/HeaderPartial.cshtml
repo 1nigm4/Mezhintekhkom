@@ -8,7 +8,7 @@
             <div class="nav-item dropdown">
                 <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">О нас</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Общая информация</a></li>
+                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Information">Основные сведения</a></li>
                     <li><a class="dropdown-item" href="#">Сертификаты</a></li>
                     <li><a class="dropdown-item" href="#">Достижения</a></li>
                     <li><a class="dropdown-item" href="#">Преподаватели</a></li>
@@ -19,7 +19,16 @@
                 </ul>
             </div>
             <a class="nav-item" href="#">Проекты</a>
-            <div class="nav-item dropdown">
+            <div class="nav-item btn-group">
+                <a asp-controller="Identity", asp-action="Index">Учебный центр</a>
+                <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#"></a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Личный кабинет</a></li>
+                    <li><a class="dropdown-item" href="#">Расписание занятий</a></li>
+                    <li><a class="dropdown-item" asp-controller="Identity" asp-action="Courses" asp-route-id="">Каталог курсов</a></li>
+                </ul>
+            </div>
+            <div class="nav-item dropdown" hidden>
                 <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">Учебный центр</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Личный кабинет</a></li>

@@ -53,7 +53,7 @@ namespace Mezhintekhkom.Site.Services
             string[] bodies = _options.Value.EmailSender.Bodies;
             int index = (int)type;
             string message = bodies[index];
-            return String.Format(message, values[0]);
+            return String.Format(message, values);
         }
 
         public Task SendSmsAsync(string number, string message)

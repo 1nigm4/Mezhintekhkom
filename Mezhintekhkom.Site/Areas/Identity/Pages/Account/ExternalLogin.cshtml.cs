@@ -1,33 +1,26 @@
 ﻿#nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Security.Claims;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
+using Mezhintekhkom.Site.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Mezhintekhkom.Site.Data.Entities;
-using AspNet.Security.OAuth.Vkontakte;
 using System.Net;
-using static AspNet.Security.OAuth.Vkontakte.VkontakteAuthenticationConstants;
+using System.Security.Claims;
 
 namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
+        [TempData]
+        public string ErrorMessage { get; set; }
+        public string ProviderDisplayName { get; set; }
+        public string ReturnUrl { get; set; }
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly IUserStore<User> _userStore;
         private readonly IUserEmailStore<User> _emailStore;
-        private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
         private readonly IWebHostEnvironment _environment;
 
@@ -36,23 +29,16 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             UserManager<User> userManager,
             IUserStore<User> userStore,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender,
             IWebHostEnvironment environment)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _userStore = userStore;
-            _emailStore = GetEmailStore();
+            _emailStore = (IUserEmailStore<User>)userStore;
             _logger = logger;
-            _emailSender = emailSender;
             _environment = environment;
         }
 
-        [TempData]
-        public string ErrorMessage { get; set; }
-        public string ProviderDisplayName { get; set; }
-        public string ReturnUrl { get; set; }
-        
         public IActionResult OnGet() => RedirectToPage("./Login");
 
         public IActionResult OnPost(string provider, string returnUrl = null)
@@ -95,15 +81,21 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             {
                 string email = info.Principal.FindFirstValue(ClaimTypes.Email) ?? string.Empty;
                 var existUser = await _userManager.FindByEmailAsync(email);
+                IdentityResult createResult;
                 if (existUser != null)
                 {
-                    return RedirectToPage("RegisterConfirmation", new { email = email, returnUrl = returnUrl });
+                    createResult = await _userManager.AddLoginAsync(existUser, info);
+                    if (createResult.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(existUser, isPersistent: false, info.LoginProvider);
+                        return LocalRedirect(returnUrl);
+                    }
                 }
                 else
                 {
                     var user = await CreateUserAsync(info);
 
-                    var createResult = await _userManager.CreateAsync(user);
+                    createResult = await _userManager.CreateAsync(user);
                     if (createResult.Succeeded)
                     {
                         createResult = await _userManager.AddLoginAsync(user, info);
@@ -134,13 +126,13 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
                             return LocalRedirect(returnUrl);
                         }
                     }
-
-                    if (createResult.Errors.Any(c => c.Code == "DuplicateUserName"))
-                        ErrorMessage = "Пользователь с таким E-mail уже зарегистрирован";
-                    else
-                        ErrorMessage = "Ошибка авторизации";
-                    return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
                 }
+
+                if (createResult.Errors.Any(c => c.Code == "DuplicateUserName"))
+                    ErrorMessage = "Пользователь с таким E-mail уже зарегистрирован";
+                else
+                    ErrorMessage = "Ошибка авторизации";
+                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
         }
 
@@ -183,15 +175,6 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             await _emailStore.SetEmailAsync(user, email, CancellationToken.None);
 
             return user;
-        }
-
-        private IUserEmailStore<User> GetEmailStore()
-        {
-            if (!_userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
-            }
-            return (IUserEmailStore<User>)_userStore;
         }
     }
 }

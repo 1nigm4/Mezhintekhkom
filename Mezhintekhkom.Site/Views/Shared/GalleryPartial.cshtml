@@ -1,0 +1,25 @@
+﻿@{
+    string path = "/images/" + ViewBag.Title;
+    FileInfo[] files = new DirectoryInfo("./wwwroot" + path).GetFiles();
+}
+<div id="gallery" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @for (int i = 0; i < files.Length; i++)
+        {
+            string state = i == 0 ? "active" : "";
+            int interval = i == 0 ? 5000 : 2000;
+            FileInfo file = files[i];
+            <div class="carousel-item @state" data-bs-interval="@interval">
+                <div style="background-image:url('@path/@file.Name')"></div>
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#gallery" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#gallery" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

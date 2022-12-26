@@ -4,49 +4,75 @@
 <div class="content-container">
     @await Html.PartialAsync("NavigationPartial")
     <h3>Контакты</h3>
-    <div class="contacts">
-        <div id="contact">
-            <div class="contact">
-                <svg class="icon icon-mobile2"><use xlink:href="#icon-mobile2"></use></svg>
-                <div class="phones">
-                    <a href="#">8 (495) 122-20-06</a>
-                    <a href="#">8 (939) 849-09-62</a>
+    <div id="contacts-container">
+        <h5>Автономная некоммерческая организация дополнительного профессионального образования «Межотраслевой центр инновационных технологий и развития компетенций»</h5>
+        <div class="contacts">
+            <div id="contact">
+                <div class="contact">
+                    <svg class="icon icon-mobile"><use xlink:href="#icon-mobile"></use></svg>
+                    <div class="phones">
+                        <a href="#">8 (495) 122-20-06</a>
+                        <a href="#">8 (939) 849-09-62</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <svg class="icon icon-mail"><use xlink:href="#icon-mail"></use></svg>
+                    <a href="#">info@mezhintekhkom.ru</a>
+                </div>
+                <div class="contact">
+                    <svg class="icon icon-position"><use xlink:href="#icon-position"></use></svg>
+                    <a href="https://yandex.ru/maps/-/CCUjiGSUWC">117342, г. Москва, муниципальный округ Коньково, ул. Бутлерова, д. 17Б, этаж 3, помещение XII, комната 86, офис 3, кабинет 97</a>
+                </div>
+                <div class="contact">
+                    <svg class="icon icon-file"><use xlink:href="#icon-file"></use></svg>
+                    <a href="#">Реквизиты</a>
+                </div>
+                <div class="contact">
+                    <svg class="icon"><use xlink:href="#icon-phone"></use></svg>
+                    <a href="#">Телефонный справочник АНО ДПО "МЕЖИНТЕХКОМ"</a>
                 </div>
             </div>
-            <div class="contact">
-                <svg class="icon icon-mail"><use xlink:href="#icon-mail"></use></svg>
-                <a href="#">info@mezhintekhkom.ru</a>
-            </div>
-            <div class="contact">
-                <svg class="icon icon-position"><use xlink:href="#icon-position"></use></svg>
-                <a href="https://yandex.ru/maps/-/CCUjiGSUWC">117342, г. Москва, вн.тер.г. муниципальный округ Коньково, ул. Бутлерова, д. 17Б, этаж/помещ. 3/XII, ком./офис/к. 86/3/97</a>
+            <div class="map">
+                <p>Схема проезда:</p>
+                <iframe src="https://yandex.ru/map-widget/v1/?z=14&ol=biz&oid=128775136710" id="map" frameborder="0"></iframe>
+                <div style="width:360px;height:220px;overflow:hidden;position:absolute; right: 0;bottom:-238px;">
+                    <iframe style="width:100%;height:100%;border:1px solid #e6e6e6;border-radius:8px;box-sizing:border-box" src="https://yandex.ru/maps-reviews-widget/128775136710?comments"></iframe>
+                    <a href="https://yandex.ru/maps/org/mezhotraslevoy_tsentr_innovatsionnykh_tekhnologiy_i_razvitiya_kompetentsiy/128775136710/" target="_blank" style="box-sizing:border-box;text-decoration:none;color:#b3b3b3;font-size:10px;font-family:YS Text,sans-serif;padding:0 20px;position:absolute;bottom:8px;width:100%;text-align:center;left:0;overflow:hidden;text-overflow:ellipsis;display:block;max-height:14px;white-space:nowrap;padding:0 16px;box-sizing:border-box">
+                        Межинтехком на карте Москвы — Яндекс Карты
+                    </a>
+                </div>
             </div>
         </div>
-        <div id="map"></div>
+        <h5><b>Режим и график работы:</b></h5>
+        <ul>
+            <li>Сотрудники: ПН-ПТ 09:00-18:00</li>
+            <li>Преподаватели: ПН-ПТ 09:00-17:00</li>
+        </ul>
+        <table>
+            <tr>
+                <th style="padding-right: 55px;">Сообщество</th>
+                <th>Ссылка</th>
+            </tr>
+            <tr>
+                <td><svg class="icon icon-vkontakte"><use xlink:href="#icon-vkontakte"></use></svg> ВКонтакте</td>
+                <td><a href="https://vk.com/mezhintekhkom">https://vk.com/mezhintekhkom</a></td>
+            </tr>
+            <tr>
+                <td><svg class="icon icon-telegram"><use xlink:href="#icon-telegram"></use></svg> Telegram</td>
+                <td><a href="https://t.me/info_mezhintekhkom">https://t.me/info_mezhintekhkom</a></td>
+            </tr>
+            <tr>
+                <td><svg class="icon icon-youtube"><use xlink:href="#icon-youtube"></use></svg> YouTube</td>
+                <td><a href="https://www.youtube.com/@@info_mezhintekhkom">https://www.youtube.com/@@info_mezhintekhkom</a></td>
+            </tr>
+            <tr>
+                <td><svg class="icon icon-dzen"><use xlink:href="#icon-dzen"></use></svg> Яндекс Дзен</td>
+                <td><a href="https://dzen.ru/id/6097a828b8f34b04d28918ee">https://dzen.ru/id/6097a828b8f34b04d28918ee</a></td>
+            </tr>
+        </table>
+        <p>АНО ДПО «МЕЖИНТЕХКОМ» приглашает к сотрудничеству на условиях партнёрства. Ждём ваших предложений: basyukov_a_o@mezhintekhkom.ru</p>
     </div>
 </div>
-<svg hidden>
-    <defs>
-        <symbol id="icon-mobile2" viewBox="0 0 32 32">
-            <path d="M24 0h-18c-1.1 0-2 0.9-2 2v28c0 1.1 0.9 2 2 2h18c1.1 0 2-0.9 2-2v-28c0-1.1-0.9-2-2-2zM15 30.556c-0.859 0-1.556-0.697-1.556-1.556s0.697-1.556 1.556-1.556 1.556 0.697 1.556 1.556-0.697 1.556-1.556 1.556zM24 26h-18v-22h18v22z"></path>
-        </symbol>
-    </defs>
-</svg>
-<svg hidden>
-    <defs>
-        <symbol id="icon-mail" viewBox="0 0 32 32">
-            <path d="M28 5h-24c-2.209 0-4 1.792-4 4v13c0 2.209 1.791 4 4 4h24c2.209 0 4-1.791 4-4v-13c0-2.208-1.791-4-4-4zM2 10.25l6.999 5.25-6.999 5.25v-10.5zM30 22c0 1.104-0.898 2-2 2h-24c-1.103 0-2-0.896-2-2l7.832-5.875 4.368 3.277c0.533 0.398 1.166 0.6 1.8 0.6 0.633 0 1.266-0.201 1.799-0.6l4.369-3.277 7.832 5.875zM30 20.75l-7-5.25 7-5.25v10.5zM17.199 18.602c-0.349 0.262-0.763 0.4-1.199 0.4s-0.851-0.139-1.2-0.4l-12.8-9.602c0-1.103 0.897-2 2-2h24c1.102 0 2 0.897 2 2l-12.801 9.602z"></path>
-        </symbol>
-    </defs>
-</svg>
-<svg hidden>
-    <defs>
-        <symbol id="icon-position" viewBox="0 0 32 32">
-            <path d="M16.5 24.447v-0.996c3.352 0.099 5.993 1.174 5.993 2.487 0 1.379-2.906 2.56-6.492 2.56s-6.492-1.181-6.492-2.56c0-1.313 2.641-2.389 5.992-2.487v0.996c-2.799 0.069-4.993 0.71-4.993 1.491 0 0.827 2.459 1.623 5.493 1.623 3.033 0 5.492-0.796 5.492-1.623-0.001-0.781-2.194-1.421-4.993-1.491zM10.516 8.995c0-3.033 2.521-5.493 5.556-5.493 3.034 0 5.493 2.46 5.493 5.493 0 2.607-1.818 4.786-4.256 5.348l-1.309 13.219-1.313-13.256c-2.362-0.615-4.171-2.756-4.171-5.311zM16 7.524c0-0.828-0.671-1.498-1.498-1.498s-1.499 0.67-1.499 1.498c0 0.827 0.671 1.498 1.499 1.498s1.498-0.67 1.498-1.498z"></path>
-        </symbol>
-    </defs>
-</svg>
-
 @await Html.PartialAsync("FeedbackPartial")
 @section Scripts {
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1606b5d3-bb3f-4f4d-82e5-02a252347081&lang=ru-RU" type="text/javascript"></script>

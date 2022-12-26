@@ -9,63 +9,95 @@
             <fieldset>
                 <legend>Форма обучения</legend>
                 <div class="radio">
-                    <input name="difficulty" type="radio" id="ochno" checked>
-                    <label for="ochno">Очная</label>
+                    <input name="f1" type="radio" id="f11" checked>
+                    <label for="f11">Очная</label>
                 </div>
                 <div class="radio">
-                    <input name="difficulty" type="radio" id="ochno-zaochno">
-                    <label for="ochno-zaochno">Очно-заочная</label>
+                    <input name="f1" type="radio" id="f12">
+                    <label for="f12">Очно-заочная</label>
                 </div>
                 <div class="radio">
-                    <input name="difficulty" type="radio" id="zaochno">
-                    <label for="zaochno">Заочная</label>
+                    <input name="f1" type="radio" id="f13">
+                    <label for="f13">Заочная</label>
                 </div>
                 <div class="radio">
-                    <input name="difficulty" type="radio" id="distance">
-                    <label for="distance">Дистанционная</label>
+                    <input name="f1" type="radio" id="f14">
+                    <label for="f14">Дистанционная</label>
                 </div>
                 <div class="radio">
-                    <input name="difficulty" type="radio" id="electron">
-                    <label for="electron">Электронная</label>
+                    <input name="f1" type="radio" id="f15">
+                    <label for="f15">Электронная</label>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Тип обучения</legend>
                 <div class="radio">
-                    <input name="type" type="radio" id="any" checked>
-                    <label for="any">Любой</label>
+                    <input name="f2" type="radio" id="f21" checked>
+                    <label for="f21">Любой</label>
                 </div>
                 <div class="radio">
-                    <input name="type" type="radio" id="prof">
-                    <label for="prof">Профессия</label>
+                    <input name="f2" type="radio" id="f22">
+                    <label for="f22">Профессия</label>
                 </div>
                 <div class="radio">
-                    <input name="type" type="radio" id="course">
-                    <label for="course">Курс</label>
+                    <input name="f2" type="radio" id="f23">
+                    <label for="f23">Курс</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Тип курсов</legend>
+                <div class="radio">
+                    <input name="f3" type="radio" id="f31" checked>
+                    <label for="f31">Повышения квалификации</label>
+                </div>
+                <div class="radio">
+                    <input name="f3" type="radio" id="f32">
+                    <label for="f32">Профессиональная переподготовка</label>
+                </div>
+                <div class="radio">
+                    <input name="f3" type="radio" id="f33">
+                    <label for="f33">Профессиональное обучение</label>
+                </div>
+                <div class="radio">
+                    <input name="f3" type="radio" id="f34">
+                    <label for="f34">Дополнительное образование</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Уровень образования</legend>
+                <div class="radio">
+                    <input name="f4" type="radio" id="f41" checked>
+                    <label for="f41">Дошкольное образование</label>
+                </div>
+                <div class="radio">
+                    <input name="f4" type="radio" id="f42">
+                    <label for="f42">Начальная школа</label>
+                </div>
+                <div class="radio">
+                    <input name="f4" type="radio" id="f43">
+                    <label for="f43">Средние и старшие классы</label>
+                </div>
+                <div class="radio">
+                    <input name="f4" type="radio" id="f44">
+                    <label for="f44">Дополнительное образование</label>
+                </div>
+                <div class="radio">
+                    <input name="f4" type="radio" id="f45">
+                    <label for="f45">ВУЗы и ССУЗы</label>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Длительность</legend>
-                <input type="text" id="amount" value="от 1 до 24 месяцев" readonly>
-                <div id="slider-range"></div>
+                <input type="text" class="amount" id="hours" value="от 16 до 1440 часов" readonly>
+                <div class="slider-range" id="hour-range"></div>
+            </fieldset>
+            <fieldset>
+                <legend>Цена</legend>
+                <input type="text" class="amount" id="price" value="от 0 до 99999 рублей" readonly>
+                <div class="slider-range" id="price-range"></div>
             </fieldset>
         </form>
         <div class="col">
-            <fieldset>
-                <legend>Направление</legend>
-                <div class="directions">
-                    <a href="#">Работотехника</a>
-                    <a href="#">Создание игр</a>
-                    <a href="#">Web-разработка</a>
-                    <a href="#">Мультимедия</a>
-                    <a href="#">Шахматы</a>
-                    <a href="#">3D-моделирование и дизайн</a>
-                    <a href="#">Английский язык</a>
-                    <a href="#">Блогинг</a>
-                    <a href="#">Soft skills</a>
-                </div>
-            </fieldset>
-
             <div class="courses">
                 <a class="course" asp-action="Courses" asp-route-id="5fb707fd-0d49-479a-a065-0b7f1c3f9895">
                     <p>Программа</p>
@@ -138,6 +170,7 @@
                     <label>24 месяца</label>
                 </a>
             </div>
+            @await Html.PartialAsync("PaginationPartial")
         </div>
     </div>
 </div>

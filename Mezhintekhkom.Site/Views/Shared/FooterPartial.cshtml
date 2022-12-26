@@ -1,52 +1,55 @@
 ﻿<div class="footer">
     <div class="footer-col">
-        <img class="logo" src="~/images/logo.png">
-        <h5 class="phone-number">МЕЖИНТЕХКОМ</h5>
+        <h5 class="phone-number">АНО ДПО «МЕЖИНТЕХКОМ» </h5>
         <a class="footer-col-link phone-number" href="#">8 (495) 122-20-06</a>
-        <p class="footer-col-link address">117342, Г. МОСКВА, ВН.ТЕР.Г. МУНИЦИПАЛЬНЫЙ ОКРУГ КОНЬКОВО, УЛ БУТЛЕРОВА, Д. 17Б, ЭТАЖ/ПОМЕЩ. 3/XII, КОМ./ОФИС/К. 86/3/97</p>
-        <p class="footer-col-link">info@mezhintekhkom.ru</p>
+        <p class="footer-col-link email">info@mezhintekhkom.ru</p>
+        <p class="footer-col-link address">117342, г. Москва, муниципальный округ Коньково, ул. Бутлерова, д. 17Б, этаж 3, помещение XII, комната 86, офис 3, кабинет 97 ИНН 9728057680 / КПП 772801001 ОГРН 1227700113035</p>
         <div class="social">
-            <img class="social-ico" src="~/images/Vkontakte.png">
-            <img class="social-ico" src="~/images/facebook.png">
-            <img class="social-ico" src="~/images/instagram.png">
-            <img class="social-ico" src="~/images/youtube.png">
-            <img class="social-ico" src="~/images/telegram.png">
+            <a href="https://vk.com/mezhintekhkom"><svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg></a>
+            <a href="https://t.me/info_mezhintekhkom"><svg class="icon"><use xlink:href="#icon-telegram"></use></svg></a>
+            <a href="https://www.youtube.com/@@info_mezhintekhkom"><svg class="icon"><use xlink:href="#icon-youtube"></use></svg></a>
+            <a href="https://api.whatsapp.com/message/CO6ZWLCBF4ZHF1"><svg class="icon"><use xlink:href="#icon-whatsapp"></use></svg></a>
+            <a href="https://dzen.ru/id/6097a828b8f34b04d28918ee"><svg class="icon"><use xlink:href="#icon-dzen"></use></svg></a>
         </div>
+        <span class="footer-col-link footer-small">Лицензия на осуществление образовательной деятельности № Л035-01298-77/00617183 от 22.09.2022 г., выдано Департаментом образования и науки города Москвы</span>
+    </div>
+    <div class="footer-col">
+        <p class="footer-col-head">О нас</p>
+        <a class="footer-col-link" asp-controller="Home" asp-action="Information">Основные сведения</a>
+        <a class="footer-col-link" href="#">Сертификаты</a>
+        <a class="footer-col-link" href="#">Достижения</a>
+        <a class="footer-col-link" href="#">Преподаватели</a>
+        <a class="footer-col-link" href="#">Наши клиенты</a>
+        <a class="footer-col-link" asp-controller="Home" asp-action="Index" asp-fragment="reviews-block">Отзывы</a>
+        <a class="footer-col-link" href="#">Вакансии</a>
+        <a class="footer-col-link" asp-controller="Home" asp-action="Index" asp-fragment="questions">Ответы на вопросы</a>
     </div>
     <div class="footer-col">
         <p class="footer-col-head">Учебный центр</p>
+        <a class="footer-col-link" asp-controller="Identity" asp-action="Index">О учебном центре</a>
+        <a class="footer-col-link" asp-area="Identity" asp-page="/Account/Manage/Index">Личный кабинет</a>
         <a class="footer-col-link" href="#">Расписание занятий</a>
-        <a class="footer-col-link" href="#">Каталог курсов</a>
+        <a class="footer-col-link" asp-controller="Identity" asp-action="Courses" asp-route-id="">Каталог курсов</a>
         <a class="footer-col-link" href="#">Проекты</a>
-        <a class="footer-col-link" href="#">Преподаватели</a>
-        <a class="footer-col-link" href="#">Отзывы</a>
     </div>
     <div class="footer-col">
         <p class="footer-col-head">Услуги</p>
-        <a class="footer-col-link" href="#">Охрана труда и аудит</a>
+        <a class="footer-col-link" asp-controller="Services" asp-action="LaborProtection">Охрана труда</a>
         <a class="footer-col-link" href="#">Рекрутмент</a>
         <a class="footer-col-link" href="#">Консультирование по вопросам коммерческой деятельности</a>
         <a class="footer-col-link" href="#">Полиграфическая деятельность</a>
-        <a class="footer-col-link" href="#">Мероприятия</a>
+        <a class="footer-col-link" asp-controller="Events" asp-action="Index">Мероприятия</a>
     </div>
     <div class="footer-col">
-        <p class="footer-col-head">Взрослым</p>
-        <a class="footer-col-link" href="#">Разработчик игр на Unity</a>
-        <a class="footer-col-link" href="#">Разработка ПО</a>
-        <a class="footer-col-link" href="#">Графический дизайн</a>
-        <a class="footer-col-link" href="#">Тестировщик ПО</a>
-        <a class="footer-col-link" href="#">Интернет маркетинг</a>
-        <a class="footer-col-link" href="#">Java-разработчик</a>
-        <a class="footer-col-link" href="#">Python-разработчик</a>
+        <p class="footer-col-head">Контакты</p>
+        <a class="footer-col-link" asp-controller="Home" asp-action="Contacts">Наши контакты</a>
     </div>
-    <div class="footer-col">
-        <p class="footer-col-head">Информация</p>
-        <a class="footer-col-link" href="#">Об академии</a>
-        <a class="footer-col-link" href="#">Мероприятия</a>
-        <a class="footer-col-link" href="#">Новости</a>
-        <a class="footer-col-link" href="#">База знаний</a>
-        <a class="footer-col-link" href="#">Карьера</a>
-        <a class="footer-col-link" href="#">Контакты</a>
+    <a id="to-top" asp-fragment="header">^</a>
+    <div class="privacy">
+        <div>
+            <a href="~/documents/Политика конфеденциальности.docx">Политика конфеденциальности</a>
+            <a href="~/documents/Пользовательское соглашение.docx">Пользовательское соглашение</a>
+        </div>
+        <p>&copy; 2022 АНО ДПО «МЕЖИНТЕХКОМ» все права защищены. По всем вопросам: info@mezhintekhkom.ru</p>
     </div>
-    <a id="to-top" href="#header">^</a>
 </div>

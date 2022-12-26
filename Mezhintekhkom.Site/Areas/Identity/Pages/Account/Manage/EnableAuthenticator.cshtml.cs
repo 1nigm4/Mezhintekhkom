@@ -31,7 +31,7 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync(string returnUrl)
         {
-            returnUrl ??= Url.Page("./Index");
+            returnUrl ??= Url.Page("TwoFactorAuthentication");
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {

@@ -5,7 +5,7 @@ namespace Mezhintekhkom.Site.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress(ErrorMessage = "E-mail введен неккоректно")]
+        [EmailAddress(ErrorMessage = "E-mail введен некорректно")]
         public string Email { get; set; }
 
         [Required]

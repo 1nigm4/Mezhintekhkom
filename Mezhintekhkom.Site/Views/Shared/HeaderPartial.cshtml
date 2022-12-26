@@ -5,35 +5,29 @@
             <h5>Межинтехком</h5>
         </a>
         <div class="nav">
-            <div class="nav-item dropdown">
-                <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">О нас</a>
+            <div class="nav-item btn-group">
+                <a asp-controller="Home" asp-action="About">О нас</a>
+                <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#"></a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" asp-controller="Home" asp-action="Information">Основные сведения</a></li>
                     <li><a class="dropdown-item" href="#">Сертификаты</a></li>
                     <li><a class="dropdown-item" href="#">Достижения</a></li>
-                    <li><a class="dropdown-item" href="#">Преподаватели</a></li>
+                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Teachers">Преподаватели</a></li>
                     <li><a class="dropdown-item" href="#">Наши клиенты</a></li>
                     <li><a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-fragment="reviews-block">Отзывы</a></li>
                     <li><a class="dropdown-item" href="#">Вакансии</a></li>
-                    <li><a class="dropdown-item" href="#">Ответы на вопросы</a></li>
+                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-fragment="questions">Ответы на вопросы</a></li>
                 </ul>
             </div>
             <a class="nav-item" href="#">Проекты</a>
             <div class="nav-item btn-group">
-                <a asp-controller="Identity", asp-action="Index">Учебный центр</a>
+                <a asp-controller="Identity" asp-action="Index">Учебный центр</a>
                 <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#"></a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Личный кабинет</a></li>
                     <li><a class="dropdown-item" href="#">Расписание занятий</a></li>
                     <li><a class="dropdown-item" asp-controller="Identity" asp-action="Courses" asp-route-id="">Каталог курсов</a></li>
-                </ul>
-            </div>
-            <div class="nav-item dropdown" hidden>
-                <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">Учебный центр</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Личный кабинет</a></li>
-                    <li><a class="dropdown-item" href="#">Расписание занятий</a></li>
-                    <li><a class="dropdown-item" asp-controller="Courses" asp-action="Index">Каталог курсов</a></li>
+                    <li><a class="dropdown-item" asp-controller="Identity" asp-action="Useful">Полезные материалы</a></li>
                 </ul>
             </div>
             <a class="nav-item" asp-controller="News" asp-action="Index">Новости</a>
@@ -51,13 +45,6 @@
         </div>
         <a class="btn-blue" href="#">Перезвонить мне</a>
         <form class="search">
-            <svg hidden>
-                <defs>
-                    <symbol id="icon-search" viewBox="0 0 32 32">
-                        <path d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path>
-                    </symbol>
-                </defs>
-            </svg>
             <svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg>
             <input type="text">
             <input class="search-submit" type="submit" value="Найти">

@@ -67,6 +67,7 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                returnUrl = Url.Page("Manage/Index");
                 return LocalRedirect(returnUrl);
             }
             if (result.RequiresTwoFactor)

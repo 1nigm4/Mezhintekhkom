@@ -68,7 +68,7 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostLoginAsync(string returnUrl = null)
         {
-            ReturnUrl = returnUrl ?? Url.Content("~/");
+            ReturnUrl = returnUrl ?? Url.Page("Manage/Index");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             var context = new ValidationContext(LoginInput, serviceProvider: null, items: null);

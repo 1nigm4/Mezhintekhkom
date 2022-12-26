@@ -33,31 +33,14 @@
         </div>
         <div class="quality">
             <img src="~/images/quality4.png">
-            <span>Сопровождение на всех этапах. От начала обучения до трудоустройства</span>
+            <span>Сопровождение на всех этапах обучения</span>
         </div>
     </div>
     @await Html.PartialAsync("GalleryPartial")
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <div style="background-image:url(/images/Owl.png)"></div>
-            </div>
-            <div class="carousel-item">
-                <div style="background-image:url(/images/KaitLogo.jpg)"></div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#gallery" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#gallery" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 </div>
 
 <div id="reviews-block">
-    Отзывы наших студентов
+    Отзывы наших обучающихся
     <div class="reviews">
         <div class="review">
             <div class="reviewer">
@@ -236,7 +219,7 @@
                 </h2>
                 <div id="q-a" class="accordion-collapse collapse show" aria-labelledby="qh-a" data-bs-parent="#questionsAccordian">
                     <div class="accordion-body">
-                        Проверить лицензию учебного центра «Московского института профессиональной переподготовки и повышения квалификации педагогов» можно в специальном реестре лицензий на сайте Рособрнадзора. Проверьте лицензию нашего Учебного центра в сводном реестре лицензий здесь
+                        Проверить лицензию учебного центра можно в специальном реестре лицензий на сайте Рособрнадзора. Проверьте лицензию нашего Учебного центра в сводном реестре лицензий <a href="#obrnadzor">здесь</a>
                     </div>
                 </div>
             </div>
@@ -294,7 +277,7 @@
                 </h2>
                 <div id="q-e" class="accordion-collapse collapse" aria-labelledby="qh-e" data-bs-parent="#questionsAccordian">
                     <div class="accordion-body">
-                        <strong>Выделение информации жирным</strong> ыфв оы отвофыв то ыываыа ыв раы рвары рвра рырвра рыволр аывло раолыр
+
                     </div>
                 </div>
             </div>
@@ -306,7 +289,7 @@
                 </h2>
                 <div id="q-f" class="accordion-collapse collapse" aria-labelledby="qh-f" data-bs-parent="#questionsAccordian">
                     <div class="accordion-body">
-                        <strong>Выделение информации жирным</strong> ыфв оы отвофыв то ыываыа ыв раы рвары рвра рырвра рыволр аывло раолыр
+
                     </div>
                 </div>
             </div>
@@ -318,7 +301,7 @@
                 </h2>
                 <div id="q-g" class="accordion-collapse collapse" aria-labelledby="qh-g" data-bs-parent="#questionsAccordian">
                     <div class="accordion-body">
-                        <strong>Выделение информации жирным</strong> ыфв оы отвофыв то ыываыа ыв раы рвары рвра рырвра рыволр аывло раолыр
+
                     </div>
                 </div>
             </div>
@@ -327,7 +310,3 @@
     @await Html.PartialAsync("PortalsPartial")
 </div>
 @await Html.PartialAsync("FeedbackPartial")
-@section Scripts {
-    <script src="~/lib/owl-carousel/dist/owl.carousel.min.js"></script>
-    <script src="~/js/carousel.js" asp-append-version="true"></script>
-}

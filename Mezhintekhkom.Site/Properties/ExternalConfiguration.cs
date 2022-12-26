@@ -5,6 +5,7 @@
         public OAuthConfiguration Vkontakte { get; set; }
         public OAuthConfiguration Google { get; set; }
         public OAuthConfiguration Yandex { get; set; }
+        public OAuthConfiguration MailRu { get; set; }
 
         public class OAuthConfiguration
         {

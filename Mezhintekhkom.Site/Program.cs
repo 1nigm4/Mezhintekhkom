@@ -63,6 +63,14 @@ builder.Services
         options.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, "birthday");
         options.ClaimActions.MapJsonSubKey(ClaimTypes.MobilePhone, "default_phone","number");
         options.ClaimActions.MapJsonKey(ClaimTypes.Gender, "sex");
+    })
+    .AddMailRu(options =>
+    {
+        options.ClientId = oAuth.MailRu.ClientId;
+        options.ClientSecret = oAuth.MailRu.ClientSecret;
+        options.Scope.AddRange(oAuth.MailRu.Scopes);
+        options.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, "birthday");
+        options.ClaimActions.MapJsonKey("image", "image");
     });
 
 var app = builder.Build();

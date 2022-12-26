@@ -155,8 +155,8 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account
             string? gender = claims.FindFirstValue(ClaimTypes.Gender);
             gender = gender switch
             {
-                "female" or "1" => "Женский",
-                "male" or "2" => "Мужской",
+                "female" or "f" or "1" => "Женский",
+                "male" or "m" or "2" => "Мужской",
                 _ => null
             };
 

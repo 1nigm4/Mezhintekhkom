@@ -3,71 +3,67 @@
 }
 <div class="content-container">
     @await Html.PartialAsync("NavigationPartial")
-    <h3>Новости Межинтехком</h3>
+    @if (ViewBag.Type is null)
+    {
+        <h3>Новости учебного центра</h3>
+        <a style="position:absolute;top:68px;right: 0;" asp-route-type="services"><h4>Новости услуг &rarr;</h4></a>
+    }
+    else
+    {
+        <h3>Новости услуг</h3>
+        <a style="position:absolute;top:68px;right: 0;" asp-action="Index"><h4>Новости учебного центра &rarr;</h4></a>
+    }
     <div class="news">
         <div class="item">
-            <div class="item-img"></div>
-            <div class="item-info">
-                <label>2 декабря 2022</label>
+            <img src="~/images/news.png"/>
+            <div class="info">
                 <h5>Заголовок новости</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
+                <label>2 декабря 2022</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
                 <a href="#">Подробнее</a>
             </div>
+            <div class="divider"></div>
         </div>
         <div class="item">
-            <div class="item-img"></div>
-            <div class="item-info">
-                <label>2 декабря 2022</label>
+            <img src="~/images/news.png" />
+            <div class="info">
                 <h5>Заголовок новости</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
+                <label>2 декабря 2022</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
                 <a href="#">Подробнее</a>
             </div>
+            <div class="divider"></div>
         </div>
         <div class="item">
-            <div class="item-img"></div>
-            <div class="item-info">
-                <label>2 декабря 2022</label>
+            <img src="~/images/news.png"/>
+            <div class="info">
                 <h5>Заголовок новости</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
+                <label>2 декабря 2022</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
                 <a href="#">Подробнее</a>
             </div>
+            <div class="divider"></div>
         </div>
         <div class="item">
-            <div class="item-img"></div>
-            <div class="item-info">
-                <label>2 декабря 2022</label>
+            <img src="~/images/news.png"/>
+            <div class="info">
                 <h5>Заголовок новости</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
+                <label>2 декабря 2022</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
                 <a href="#">Подробнее</a>
             </div>
+            <div class="divider"></div>
         </div>
         <div class="item">
-            <div class="item-img"></div>
-            <div class="item-info">
-                <label>2 декабря 2022</label>
+            <img src="~/images/news.png" />
+            <div class="info">
                 <h5>Заголовок новости</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
-                <a href="#">Подробнее</a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img"></div>
-            <div class="item-info">
                 <label>2 декабря 2022</label>
-                <h5>Заголовок новости</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
-                <a href="#">Подробнее</a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img"></div>
-            <div class="item-info">
-                <label>2 декабря 2022</label>
-                <h5>Заголовок новости</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi elit, egestas ut feugiat id, laoreet volutpat risus.</p>
                 <a href="#">Подробнее</a>
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("PaginationPartial")
 </div>
 @await Html.PartialAsync("FeedbackPartial")

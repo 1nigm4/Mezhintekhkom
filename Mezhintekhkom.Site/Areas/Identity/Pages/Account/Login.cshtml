@@ -6,6 +6,7 @@
 @model AuthModel
 <div class="content-container">
     @await Html.PartialAsync("NavigationPartial")
+    <h5 style="width:600px;margin: 0 auto;margin-bottom: 30px;text-align:center">Добро пожаловать в Межотраслевой центр инновационных технологий и развития компетенций</h5>
     <div id="auth-form">
         <div id="tabs">
             <input type="radio" name="tab" id="auth-tab" checked>
@@ -13,6 +14,7 @@
             <input type="radio" name="tab" id="reg-tab">
             <label for="reg-tab">Регистрация</label>
             <form id="auth" method="post">
+                <h6>Пожалуйста, авторизуйтесь на сайте</h6>
                 @if (!isRegErrors && !ModelState.IsValid)
                 {
                     <div asp-validation-summary="All" class="text-danger"></div>
@@ -53,7 +55,7 @@
         <form id="auth-external" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             @foreach (var provider in Model.ExternalLogins)
             {
-                <button type="submit" name="provider" value="@provider.Name"><img class="social-ico" src="~/images/@(provider.DisplayName).png"></button>
+                <button type="submit" name="provider" value="@provider.Name"><svg class="icon"><use xlink:href="#icon-@provider.DisplayName.ToLower()"></use></svg></button>
             }
         </form>
     </div>

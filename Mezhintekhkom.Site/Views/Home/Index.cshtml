@@ -36,10 +36,7 @@
             <span>Сопровождение на всех этапах. От начала обучения до трудоустройства</span>
         </div>
     </div>
-    <div id="gallery" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="5000">
-                <div style="background-image:url(/images/itgirl.png)"></div>
+    @await Html.PartialAsync("GalleryPartial")
             </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <div style="background-image:url(/images/Owl.png)"></div>

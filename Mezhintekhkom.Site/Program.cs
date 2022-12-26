@@ -3,9 +3,11 @@ using Mezhintekhkom.Site.Data.Entities;
 using Mezhintekhkom.Site.Properties;
 using Mezhintekhkom.Site.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +74,10 @@ builder.Services
         options.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, "birthday");
         options.ClaimActions.MapJsonKey("image", "image");
     });
+
+builder.Services.AddDataProtection()
+    .SetApplicationName("Mezhintekhkom")
+    .PersistKeysToFileSystem(new DirectoryInfo("./Variables/AntiForgeryTokens"));
 
 var app = builder.Build();
 

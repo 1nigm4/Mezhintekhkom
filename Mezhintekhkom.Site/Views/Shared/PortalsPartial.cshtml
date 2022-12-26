@@ -1,0 +1,16 @@
+﻿@{
+    FileInfo[] files = new DirectoryInfo("./wwwroot/images/Образовательные порталы").GetFiles();
+}
+<div id="portals">
+    <div class="owl-carousel owl-theme">
+        @foreach (FileInfo file in files)
+        {
+            string link = file.Name
+                .Replace(' ', '/')
+                .Replace(file.Extension, string.Empty);
+            <a class="item" href="@link"><img src="~/images/Образовательные порталы/@file.Name"></a>
+        }
+    </div>
+</div>
+<script src="~/lib/owl-carousel/dist/owl.carousel.min.js"></script>
+<script src="~/js/carousel.js" asp-append-version="true"></script>

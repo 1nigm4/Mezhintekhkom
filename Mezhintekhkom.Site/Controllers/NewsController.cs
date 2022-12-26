@@ -4,8 +4,9 @@ namespace Mezhintekhkom.Site.Controllers
 {
     public class NewsController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string type = null)
         {
+            ViewBag.Type = type;
             return View();
         }
     }

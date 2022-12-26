@@ -1,8 +1,10 @@
 ﻿<div id="social-webs">
     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-        <img src="~/images/Vkontakte.png"/>
-        <img src="~/images/telegram.png"/>
-        <img src="~/images/youtube.png"/>
+        <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+        <svg class="icon"><use xlink:href="#icon-telegram"></use></svg>
+        <svg class="icon icon-youtube"><use xlink:href="#icon-youtube"></use></svg>
+        <svg class="icon icon-whatsapp"><use xlink:href="#icon-whatsapp"></use></svg>
+        <svg class="icon icon-dzen"><use xlink:href="#icon-dzen"></use></svg>
     </a>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
@@ -13,6 +15,15 @@
             <div id="vk_groups"></div>
             <script async src="https://telegram.org/js/telegram-widget.js?21" data-telegram-post="info_mezhintekhkom/1" data-width="100%" data-userpic="true"></script>
             <div class="g-ytsubscribe" data-channelid="UCgRylkG_Lleh0Yv45OrWlQg" data-count="default"></div>
+            <a class="whatsapp" href="https://wa.me/message/CO6ZWLCBF4ZHF1">
+                <img src="~/images/whatsapp.png" />
+            </a>
+            <div style="width:360px;height:600px;overflow:hidden;position:relative;margin-top:30px;">
+                <iframe style="width:100%;height:100%;border:1px solid #e6e6e6;border-radius:8px;box-sizing:border-box" src="https://yandex.ru/maps-reviews-widget/128775136710?comments"></iframe>
+                <a href="https://yandex.ru/maps/org/mezhotraslevoy_tsentr_innovatsionnykh_tekhnologiy_i_razvitiya_kompetentsiy/128775136710/" target="_blank" style="box-sizing:border-box;text-decoration:none;color:#b3b3b3;font-size:10px;font-family:YS Text,sans-serif;padding:0 20px;position:absolute;bottom:8px;width:100%;text-align:center;left:0;overflow:hidden;text-overflow:ellipsis;display:block;max-height:14px;white-space:nowrap;padding:0 16px;box-sizing:border-box">
+                    Межинтехком на карте Москвы — Яндекс Карты
+                </a>
+            </div>
         </div>
     </div>
 </div>

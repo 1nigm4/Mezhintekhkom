@@ -18,7 +18,16 @@
                     <button type="submit" class="btn btn-primary">Запомнить браузер</button>
                 </form>
             }
-            <a asp-page="./Disable2fa" class="btn btn-primary">Отключить двуфакторную авторизацию</a>
+            <a asp-page="./Disable2fa" class="btn btn-primary">Отключить двухфакторную авторизацию</a>
+        }
+        else {
+            if (Model.IsMachineRemembered)
+            {
+                <form method="post" style="display: inline-block">
+                    <button type="submit" class="btn btn-primary">Запомнить браузер</button>
+                </form>
+            }
+            <a asp-page="./EnableAuthenticator" class="btn btn-primary">Включить двухфакторную авторизацию</a>
         }
     }
     else

@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /Resources
 /Mezhintekhkom.Site/wwwroot/images/avatars
+/Mezhintekhkom.Site/Variables/AntiForgeryTokens

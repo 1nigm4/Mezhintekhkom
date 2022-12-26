@@ -15,6 +15,7 @@ namespace Mezhintekhkom.Site.Areas.Identity.Pages.Account.Manage
         public PhoneViewModel Input { get; set; }
         [TempData]
         public string StatusMessage { get; set; }
+        [Display(Name = "Почта")]
         public string Username { get; set; }
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;

@@ -59,4 +59,47 @@
         </div>
     </div>
 </div>
+    <div class="modal-form">
+        <button type="button" class="btn-blue" data-bs-toggle="modal" data-bs-target="#joinEvent">
+            Подать заявку на участие в мероприятии
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="joinEvent" tabindex="-1" aria-labelledby="joinEventLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            <h1 class="modal-title fs-5" id="joinEventLabel">Заявка на участие</h1>
+                            <h2>Для автоматической обработки заявки, пожалуйста, заполните все поля.</h2>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post">
+                        <div class="modal-body">
+                            <input class="form-input" asp-for="Name" placeholder="@Html.DisplayNameFor(m => m.Name)" />
+                            <input class="form-input" asp-for="Inn" placeholder="@Html.DisplayNameFor(m => m.Inn)"/>
+                            <input class="form-input" asp-for="Event" aria-required="true" placeholder="@Html.DisplayNameFor(m => m.Event)" />
+                            <span asp-validation-for="Event" class="text-danger"></span>
+                            <input class="form-input" asp-for="Role" aria-required="true" placeholder="@Html.DisplayNameFor(m => m.Role)" />
+                            <span asp-validation-for="Role" class="text-danger"></span>
+                            <input class="form-input" asp-for="Phone" aria-required="true" placeholder="@Html.DisplayNameFor(m => m.Phone)" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                            <input class="form-input" asp-for="Email" aria-required="true" placeholder="@Html.DisplayNameFor(m => m.Email)" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <span asp-validation-for="IsAgree" class="text-danger"></span>
+                            <div>
+                                <input asp-for="IsAgree" aria-required="true" />
+                                <label asp-for="IsAgree"></label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <label>К оплате: 0 руб.</label>
+                            <button type="submit" class="btn-blue">Отправить заявку</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @await Html.PartialAsync("FeedbackPartial")
